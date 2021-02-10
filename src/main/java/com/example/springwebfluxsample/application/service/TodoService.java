@@ -20,14 +20,16 @@ public class TodoService {
    */
   public Mono<Todo> fetchTodo() {
     // APIリクエストする
-    final Mono<TodoResponse> responseMono =
+    final Mono<TodoResponse> responseMono1 =
         client.get().uri("/posts/1").retrieve().bodyToMono(TodoResponse.class);
+    final Mono<TodoResponse> responseMono2 =
+        client.get().uri("/posts/78").retrieve().bodyToMono(TodoResponse.class);
 
-    return responseMono.flatMap(
-        todoResponse -> Mono
-            .just(Todo.builder()
-                .id(todoResponse.getId())
-                .name(todoResponse.getTitle())
-                .build()));
+    return Mono.zip(responseMono1, responseMono2, (response1, response2) -> {
+      return Todo.builder()
+              .id(response1.getId())
+              .name(response2.getTitle())
+              .build();
+    });
   }
 }
