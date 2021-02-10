@@ -14,7 +14,7 @@ public class TodoService {
   private final WebClient client = WebClient.create("https://jsonplaceholder.typicode.com");
 
   /**
-   * オブジェクトをリクエストしてコンバートする
+   * <p>複数APIをリクエストして結果をマッシュアップする.</p>
    *
    * @return レスポンス用オブジェクト
    */
@@ -27,9 +27,9 @@ public class TodoService {
 
     return Mono.zip(responseMono1, responseMono2, (response1, response2) -> {
       return Todo.builder()
-              .id(response1.getId())
-              .name(response2.getTitle())
-              .build();
+          .id(response1.getId())
+          .name(response2.getTitle())
+          .build();
     });
   }
 }
