@@ -18,4 +18,9 @@ public class TodoController {
   public Mono<Todo> getTodo() {
     return service.fetchTodo();
   }
+
+  @GetMapping("/sample")
+  public Mono<String> getSample() {
+    return Mono.just("sample");
+  }
 }
