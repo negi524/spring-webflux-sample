@@ -1,6 +1,9 @@
 package com.example.springwebfluxsample.presentation.controller;
 
+import com.example.springwebfluxsample.application.service.ExternalApiRequestService;
 import com.example.springwebfluxsample.application.service.TodoService;
+import com.example.springwebfluxsample.infrastructure.dto.response.HttpbinGetResponse;
+import com.example.springwebfluxsample.infrastructure.repository.HttpbinRepository;
 import com.example.springwebfluxsample.presentation.dto.response.Todo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +16,7 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class TodoController {
   private final TodoService service;
+  private final ExternalApiRequestService externalApiRequestService;
 
   @GetMapping("/todo")
   public Mono<Todo> getTodo() {
@@ -20,7 +24,7 @@ public class TodoController {
   }
 
   @GetMapping("/sample")
-  public Mono<String> getSample() {
-    return Mono.just("sample");
+  public Mono<HttpbinGetResponse> getSample() {
+    return externalApiRequestService.fetch();
   }
 }
