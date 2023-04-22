@@ -37,7 +37,10 @@ public class SampleController {
   @GetMapping("/sample")
   public Mono<String> getSample() {
     generatorService.getNameFlux()
-        .subscribe(name -> log.info("Name is: {}", name));
+        .subscribe(name -> log.info("Flux Name is: {}", name));
+
+    generatorService.getNameMono()
+        .subscribe(name -> log.info("Mono Name is: {}", name));
     return Mono.just("OK");
   }
 }

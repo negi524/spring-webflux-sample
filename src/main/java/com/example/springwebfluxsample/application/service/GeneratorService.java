@@ -4,6 +4,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /**
  * 任意のデータを生成する
@@ -19,5 +20,9 @@ public class GeneratorService {
    */
   public Flux<String> getNameFlux() {
     return Flux.fromIterable(List.of("alex", "ben", "chloe"));
+  }
+
+  public Mono<String> getNameMono() {
+    return Mono.just("alex");
   }
 }
