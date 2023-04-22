@@ -15,10 +15,10 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class ExternalApiRequestService {
 
-    private final HttpbinRepository httpbinRepository;
+  private final HttpbinRepository httpbinRepository;
 
-    public Mono<HttpbinGetResponse> fetch() {
-        final var temp = httpbinRepository.get().log();
-        return temp;
-    }
+  public Mono<HttpbinGetResponse> fetch() {
+    final var temp = httpbinRepository.get().log();
+    return temp;
+  }
 }
