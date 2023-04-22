@@ -11,13 +11,14 @@ import reactor.core.publisher.Mono;
 @Repository
 public class HttpbinRepository {
 
-    private static final WebClient WEB_CLIENT = WebClient.create("https://httpbin.org/get");
+  private static final WebClient WEB_CLIENT = WebClient.create("https://httpbin.org/get");
 
-    /**
-     * {@inheritDoc}
-     * @return
-     */
-    public Mono<HttpbinGetResponse> get() {
-        return WEB_CLIENT.get().retrieve().bodyToMono(HttpbinGetResponse.class);
-    }
+  /**
+   * {@inheritDoc}
+   *
+   * @return
+   */
+  public Mono<HttpbinGetResponse> get() {
+    return WEB_CLIENT.get().retrieve().bodyToMono(HttpbinGetResponse.class);
+  }
 }

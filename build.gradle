@@ -38,6 +38,6 @@ test {
 apply plugin: 'checkstyle'
 
 checkstyle {
-  toolVersion '8.16'
+  toolVersion '10.9.3'
   configFile file('./config/google_checks.xml')
 }
