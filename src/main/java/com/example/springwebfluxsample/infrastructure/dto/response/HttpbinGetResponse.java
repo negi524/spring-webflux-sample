@@ -1,8 +1,6 @@
 package com.example.springwebfluxsample.infrastructure.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,8 +20,8 @@ import org.springframework.lang.NonNull;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class HttpbinGetResponse {
 
-    @NonNull
-    private final String origin;
-    @NonNull
-    private final String url;
+  @NonNull
+  private final String origin;
+  @NonNull
+  private final String url;
 }
