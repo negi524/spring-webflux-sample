@@ -44,6 +44,11 @@ public class SampleController {
     return Mono.just("OK");
   }
 
+  /**
+   * 意図的に例外を発生させるエンドポイント
+   *
+   * @return エラーレスポンス
+   */
   @GetMapping("/sampleError")
   public Mono<String> getSampleError() {
     generatorService.generateError()
