@@ -43,4 +43,16 @@ public class SampleController {
         .subscribe(name -> log.info("Mono Name is: {}", name));
     return Mono.just("OK");
   }
+
+  /**
+   * 意図的に例外を発生させるエンドポイント
+   *
+   * @return エラーレスポンス
+   */
+  @GetMapping("/sampleError")
+  public Mono<String> getSampleError() {
+    generatorService.generateError()
+        .subscribe(name -> log.info("Mono Name is: {}", name));
+    return Mono.just("OK");
+  }
 }

@@ -1,7 +1,9 @@
 package com.example.springwebfluxsample.application.service;
 
+import com.example.springwebfluxsample.exception.SampleException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -24,5 +26,18 @@ public class GeneratorService {
 
   public Mono<String> getNameMono() {
     return Mono.just("alex");
+  }
+
+  /**
+   * サンプル例外を意図的に発生させる
+   *
+   * @return 例外
+   */
+  @NonNull
+  public Mono<Void> generateError() {
+    if (true) {
+      throw new SampleException("サンプル例外が発生しました");
+    }
+    return Mono.empty();
   }
 }
