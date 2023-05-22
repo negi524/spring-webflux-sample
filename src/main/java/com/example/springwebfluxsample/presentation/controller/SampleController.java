@@ -43,4 +43,11 @@ public class SampleController {
         .subscribe(name -> log.info("Mono Name is: {}", name));
     return Mono.just("OK");
   }
+
+  @GetMapping("/sampleError")
+  public Mono<String> getSampleError() {
+    generatorService.generateError()
+        .subscribe(name -> log.info("Mono Name is: {}", name));
+    return Mono.just("OK");
+  }
 }
