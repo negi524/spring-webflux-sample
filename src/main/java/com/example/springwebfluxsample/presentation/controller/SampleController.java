@@ -24,6 +24,11 @@ public class SampleController {
   private final ExternalApiRequestService externalApiRequestService;
   private final GeneratorService generatorService;
 
+  /**
+   * jsonplaceholderから返却されるtodoオブジェクトを返却する
+   *
+   * @return todoオブジェクト
+   */
   @GetMapping("/todo")
 //  @ApiOperation(value = "jsonplaceholderのtodo情報を取得する", notes = "詳細な説明はここに記述")
 //  @ApiResponses(value = {
@@ -33,12 +38,22 @@ public class SampleController {
     return todoService.fetchTodo();
   }
 
+  /**
+   * httpbinから返却されるオブジェクトを返却する
+   *
+   * @return httpbinオブジェクト
+   */
   @GetMapping("/httpbin")
 //  @ApiOperation(value = "jsonplaceholderのtodo情報を取得する", notes = "詳細な説明はここに記述")
   public Mono<HttpbinGetResponse> getHttpbin() {
     return externalApiRequestService.fetch();
   }
 
+  /**
+   * サンプルで生成した文字列を返却する
+   *
+   * @return サンプルデータ
+   */
   @GetMapping("/sample")
 //  @ApiOperation(value = "jsonplaceholderのtodo情報を取得する", notes = "詳細な説明はここに記述")
   public Mono<String> getSample() {
