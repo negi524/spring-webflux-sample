@@ -6,7 +6,3 @@ management:
 logging:
   level:
     web: DEBUG
-#spring:
-#  web:
-#    resources:
-#      add-mappings: true
