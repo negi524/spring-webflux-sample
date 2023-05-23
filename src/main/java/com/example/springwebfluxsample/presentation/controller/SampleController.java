@@ -25,16 +25,22 @@ public class SampleController {
   private final GeneratorService generatorService;
 
   @GetMapping("/todo")
+//  @ApiOperation(value = "jsonplaceholderのtodo情報を取得する", notes = "詳細な説明はここに記述")
+//  @ApiResponses(value = {
+//      @ApiResponse(code = 400, message = "bad request", response = ErrorResponse.class)
+//  })
   public Mono<Todo> getTodo() {
     return todoService.fetchTodo();
   }
 
   @GetMapping("/httpbin")
+//  @ApiOperation(value = "jsonplaceholderのtodo情報を取得する", notes = "詳細な説明はここに記述")
   public Mono<HttpbinGetResponse> getHttpbin() {
     return externalApiRequestService.fetch();
   }
 
   @GetMapping("/sample")
+//  @ApiOperation(value = "jsonplaceholderのtodo情報を取得する", notes = "詳細な説明はここに記述")
   public Mono<String> getSample() {
     generatorService.getNameFlux()
         .subscribe(name -> log.info("Flux Name is: {}", name));
@@ -50,6 +56,7 @@ public class SampleController {
    * @return エラーレスポンス
    */
   @GetMapping("/sampleError")
+//  @ApiOperation(value = "jsonplaceholderのtodo情報を取得する", notes = "詳細な説明はここに記述")
   public Mono<String> getSampleError() {
     generatorService.generateError()
         .subscribe(name -> log.info("Mono Name is: {}", name));
