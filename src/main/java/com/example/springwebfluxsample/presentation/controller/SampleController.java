@@ -5,9 +5,12 @@ import com.example.springwebfluxsample.application.service.GeneratorService;
 import com.example.springwebfluxsample.application.service.TodoService;
 import com.example.springwebfluxsample.infrastructure.dto.response.HttpbinGetResponse;
 import com.example.springwebfluxsample.presentation.dto.response.Todo;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,11 +34,8 @@ public class SampleController {
    * @return todoオブジェクト
    */
   @GetMapping("/todo")
-  @ApiResponse(responseCode = "200", description = "jsonplaceholderから返却されるtodoオブジェクトを返却する")
-//  @ApiOperation(value = "jsonplaceholderのtodo情報を取得する", notes = "詳細な説明はここに記述")
-//  @ApiResponses(value = {
-//      @ApiResponse(code = 400, message = "bad request", response = ErrorResponse.class)
-//  })
+  @ApiResponse(responseCode = "200", description = "jsonplaceholderから返却されるtodoオブジェクトを返却する",
+      content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Todo.class)))
   public Mono<Todo> getTodo() {
     return todoService.fetchTodo();
   }
@@ -46,7 +46,8 @@ public class SampleController {
    * @return httpbinオブジェクト
    */
   @GetMapping("/httpbin")
-//  @ApiOperation(value = "jsonplaceholderのtodo情報を取得する", notes = "詳細な説明はここに記述")
+  @ApiResponse(responseCode = "200", description = "jsonplaceholderから返却されるtodoオブジェクトを返却する",
+      content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = HttpbinGetResponse.class)))
   public Mono<HttpbinGetResponse> getHttpbin() {
     return externalApiRequestService.fetch();
   }
@@ -57,7 +58,8 @@ public class SampleController {
    * @return サンプルデータ
    */
   @GetMapping("/sample")
-//  @ApiOperation(value = "jsonplaceholderのtodo情報を取得する", notes = "詳細な説明はここに記述")
+//  @ApiResponse(responseCode = "200", description = "生成したサンプルデータを返却する",
+//      content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE))
   public Mono<String> getSample() {
     generatorService.getNameFlux()
         .subscribe(name -> log.info("Flux Name is: {}", name));
@@ -73,7 +75,8 @@ public class SampleController {
    * @return エラーレスポンス
    */
   @GetMapping("/sampleError")
-//  @ApiOperation(value = "jsonplaceholderのtodo情報を取得する", notes = "詳細な説明はここに記述")
+//  @ApiResponse(responseCode = "200", description = "意図的に発生したエラーを返却する",
+//      content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE))
   public Mono<String> getSampleError() {
     generatorService.generateError()
         .subscribe(name -> log.info("Mono Name is: {}", name));
