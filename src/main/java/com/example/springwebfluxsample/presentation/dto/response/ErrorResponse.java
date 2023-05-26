@@ -1,5 +1,6 @@
 package com.example.springwebfluxsample.presentation.dto.response;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,11 +21,13 @@ public class ErrorResponse implements Serializable {
    * エラーコード
    */
   @NonNull
+  @Schema(requiredMode = Schema.RequiredMode.AUTO, description = "エラーコード", example = "500")
   private final Integer code;
   /**
    * エラーメッセージ
    */
   @NonNull
+  @Schema(requiredMode = Schema.RequiredMode.AUTO, description = "エラーメッセージ", example = "エラーが発生しました")
   private final String message;
 
   /**
