@@ -1,6 +1,7 @@
 package com.example.springwebfluxsample.infrastructure.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,8 +21,16 @@ import org.springframework.lang.NonNull;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class HttpbinGetResponse {
 
+  /**
+   * アクセス元のIPアドレス
+   */
   @NonNull
+  @Schema(requiredMode = Schema.RequiredMode.AUTO, description = "アクセス元のIPアドレス", example = "192.0.2.0")
   private final String origin;
+  /**
+   * httpbinにアクセスしたときのURL
+   */
   @NonNull
+  @Schema
   private final String url;
 }
