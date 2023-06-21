@@ -27,3 +27,7 @@ $ curl -XGET "http://localhost:8080/v1/sample"
 
 http://localhost:8080/webjars/swagger-ui/index.html
 http://localhost:8080/v3/api-docs
+
+### 静的コンテンツ
+
+http://localhost:8080/sample.json
