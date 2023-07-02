@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import reactor.core.publisher.Hooks;
 
 /**
  * サンプルコード
@@ -18,7 +19,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringWebfluxSampleApplication {
 
   public static void main(final String[] args) {
-//    Hooks.enableAutomaticContextPropagation();
+    Hooks.enableAutomaticContextPropagation();
     SpringApplication.run(SpringWebfluxSampleApplication.class, args);
   }
 }
