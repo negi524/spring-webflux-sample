@@ -38,6 +38,11 @@ dependencies {
 
     // https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-prometheus
     implementation 'io.micrometer:micrometer-registry-prometheus:1.11.1'
+
+    // ログのトレーシング
+//    implementation 'io.micrometer:micrometer-tracing'
+//    implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
 }

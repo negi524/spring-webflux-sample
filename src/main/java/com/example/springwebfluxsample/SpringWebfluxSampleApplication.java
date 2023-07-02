@@ -18,6 +18,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringWebfluxSampleApplication {
 
   public static void main(final String[] args) {
+//    Hooks.enableAutomaticContextPropagation();
     SpringApplication.run(SpringWebfluxSampleApplication.class, args);
   }
 }
