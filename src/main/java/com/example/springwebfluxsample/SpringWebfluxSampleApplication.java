@@ -5,6 +5,9 @@ import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * サンプルコード
+ */
 @SpringBootApplication
 @OpenAPIDefinition(info = @Info(
     title = "サンプルAPI",
