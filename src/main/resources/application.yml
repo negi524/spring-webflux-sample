@@ -1,3 +1,6 @@
+spring:
+  application:
+    name: spring-webflux-sample
 management:
   endpoints:
     web:

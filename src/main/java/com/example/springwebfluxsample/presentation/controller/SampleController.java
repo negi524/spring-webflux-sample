@@ -42,6 +42,7 @@ public class SampleController {
   @ApiResponse(responseCode = "200", description = "jsonplaceholderから返却されるtodoオブジェクト",
       content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = Todo.class)))
   public Mono<Todo> getTodo() {
+    log.info("Todo request.");
     return todoService.fetchTodo();
   }
 
@@ -55,6 +56,7 @@ public class SampleController {
   @ApiResponse(responseCode = "200", description = "httpbinから返却されるオブジェクト",
       content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = HttpbinGetResponse.class)))
   public Mono<HttpbinGetResponse> getHttpbin() {
+    log.info("Httpbin request.");
     return externalApiRequestService.fetch();
   }
 
@@ -68,6 +70,7 @@ public class SampleController {
   @ApiResponse(responseCode = "200", description = "生成したサンプルデータを返却する",
       content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = SimpleResponse.class)))
   public Mono<SimpleResponse> getSample() {
+    log.info("Sample request.");
     generatorService.getNameFlux()
         .subscribe(name -> log.info("Flux Name is: {}", name));
 
@@ -91,6 +94,7 @@ public class SampleController {
           content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorResponse.class))),
   })
   public Mono<SimpleResponse> getSampleError() {
+    log.error("Sample error request.");
     generatorService.generateError()
         .subscribe(name -> log.info("Mono Name is: {}", name));
     final var response = new SimpleResponse("value");
