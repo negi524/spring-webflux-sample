@@ -7,8 +7,5 @@ management:
       exposure:
         include: "*"
 logging:
-  # TODO: logbackの方に書き込む
-  pattern:
-    level:  "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
   level:
-    web: DEBUG
+    web: INFO
