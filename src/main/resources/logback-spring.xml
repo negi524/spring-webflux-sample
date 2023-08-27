@@ -1,17 +1,82 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE configuration>
 
 <configuration>
-    <import class="ch.qos.logback.classic.encoder.PatternLayoutEncoder"/>
-    <import class="ch.qos.logback.core.ConsoleAppender"/>
+    <!-- 標準エラー出力 -->
+    <appender name="STDERR" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.err</target>
+        <!-- WARN以上でフィルタ -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder" >
+            <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                <shortenedClassNameLength>25</shortenedClassNameLength>
+            </throwableConverter>
+        </encoder>
+    </appender>
+    <!-- 標準出力 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- WARNレベルは除外 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>NEUTRAL</onMismatch>
+        </filter>
+        <!-- ERRORレベルは除外 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>NEUTRAL</onMismatch>
+        </filter>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+    </appender>
 
-    <appender name="STDOUT" class="ConsoleAppender">
-        <encoder class="PatternLayoutEncoder">
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} -%kvp- %msg%n</pattern>
+    <!-- local用に見やすいように出力するパターン -->
+    <appender name="STDERR_LOCAL" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.err</target>
+        <!-- WARN以上でフィルタ -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder" >
+            <!-- JSONを見やすく出力 -->
+            <jsonGeneratorDecorator class="net.logstash.logback.decorate.PrettyPrintingJsonGeneratorDecorator"/>
+            <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                <shortenedClassNameLength>25</shortenedClassNameLength>
+            </throwableConverter>
+        </encoder>
+    </appender>
+    <appender name="STDOUT_LOCAL" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- WARNレベルは除外 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>NEUTRAL</onMismatch>
+        </filter>
+        <!-- ERRORレベルは除外 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>NEUTRAL</onMismatch>
+        </filter>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder" >
+            <!-- JSONを見やすく出力 -->
+            <jsonGeneratorDecorator class="net.logstash.logback.decorate.PrettyPrintingJsonGeneratorDecorator"/>
         </encoder>
     </appender>
 
-    <root level="info">
-        <appender-ref ref="STDOUT"/>
-    </root>
+    <!-- local環境以外 -->
+    <springProfile name="!local">
+        <root level="INFO">
+            <appender-ref ref="STDERR" />
+            <appender-ref ref="STDOUT" />
+        </root>
+    </springProfile>
+    <!-- local環境のみ -->
+    <springProfile name="local">
+        <root level="INFO">
+            <appender-ref ref="STDERR_LOCAL" />
+            <appender-ref ref="STDOUT_LOCAL" />
+        </root>
+    </springProfile>
 </configuration>

@@ -2,8 +2,25 @@
 
 ## 起動方法
 
+### 通常の起動
+
 ```bash
 ./gradlew bootRun
+```
+
+### プロファイル指定で起動
+
+```bash
+./gradlew bootRun --args='--spring.profiles.active=local'
+```
+
+もしくは、環境変数に以下を設定
+```fish
+set -x SPRING_PROFILES_ACTIVE local
+```
+or
+```bash
+export SPRING_PROFILES_ACTIVE=local
 ```
 
 ## 動作確認
