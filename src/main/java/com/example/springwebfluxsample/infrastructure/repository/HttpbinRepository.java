@@ -1,6 +1,7 @@
 package com.example.springwebfluxsample.infrastructure.repository;
 
 import com.example.springwebfluxsample.infrastructure.dto.response.HttpbinGetResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -9,9 +10,10 @@ import reactor.core.publisher.Mono;
  * httpbin.orgに対するリクエスト
  */
 @Repository
+@RequiredArgsConstructor
 public class HttpbinRepository {
 
-  private static final WebClient WEB_CLIENT = WebClient.create("https://httpbin.org/get");
+  private final WebClient httpbinClient;
 
   /**
    * {@inheritDoc}
@@ -19,6 +21,6 @@ public class HttpbinRepository {
    * @return
    */
   public Mono<HttpbinGetResponse> get() {
-    return WEB_CLIENT.get().retrieve().bodyToMono(HttpbinGetResponse.class);
+    return httpbinClient.get().retrieve().bodyToMono(HttpbinGetResponse.class);
   }
 }

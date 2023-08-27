@@ -32,6 +32,11 @@ $ curl -XGET "http://localhost:8080/actuator/health"
 {"status":"UP"}
 ```
 
+### メトリクス表示
+```bash
+$ curl -XGET "http://localhost:8080/actuator/prometheus"
+```
+
 ### サンプル
 
 ```bash

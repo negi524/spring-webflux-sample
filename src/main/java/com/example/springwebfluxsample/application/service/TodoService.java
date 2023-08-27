@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class TodoService {
 
-  private final WebClient client = WebClient.create("https://jsonplaceholder.typicode.com");
+  private final WebClient jsonPlaceholderClient;
 
   /**
    * <p>複数APIをリクエストして結果をマッシュアップする.</p>
@@ -21,9 +21,9 @@ public class TodoService {
   public Mono<Todo> fetchTodo() {
     // APIリクエストする
     final Mono<TodoResponse> responseMono1 =
-        client.get().uri("/posts/1").retrieve().bodyToMono(TodoResponse.class);
+        jsonPlaceholderClient.get().uri("/posts/1").retrieve().bodyToMono(TodoResponse.class);
     final Mono<TodoResponse> responseMono2 =
-        client.get().uri("/posts/78").retrieve().bodyToMono(TodoResponse.class);
+        jsonPlaceholderClient.get().uri("/posts/78").retrieve().bodyToMono(TodoResponse.class);
 
     return Mono.zip(responseMono1, responseMono2, (response1, response2) -> {
       return Todo.builder()
