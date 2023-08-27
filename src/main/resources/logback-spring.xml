@@ -75,8 +75,8 @@
     <!-- local環境のみ -->
     <springProfile name="local">
         <root level="INFO">
-            <appender-ref ref="STDOUT_LOCAL" />
             <appender-ref ref="STDERR_LOCAL" />
+            <appender-ref ref="STDOUT_LOCAL" />
         </root>
     </springProfile>
 </configuration>
