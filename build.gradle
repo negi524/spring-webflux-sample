@@ -43,6 +43,9 @@ dependencies {
     implementation 'io.micrometer:micrometer-tracing'
     implementation 'io.micrometer:micrometer-tracing-bridge-brave'
 
+    // ログイン機能
+    implementation 'com.google.firebase:firebase-admin:9.2.0'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
 }
