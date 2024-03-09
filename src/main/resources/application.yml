@@ -9,3 +9,10 @@ management:
 logging:
   level:
     web: INFO
+extension:
+  firebase:
+    baseUrl: https://identitytoolkit.googleapis.com
+    signUpPath: /v1/accounts:signUp
+    signInPath: /v1/accounts:signInWithPassword
+    lookUpPath: /v1/accounts:lookup
+    apiKey: ${API_KEY}

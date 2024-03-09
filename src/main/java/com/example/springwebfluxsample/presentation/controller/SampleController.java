@@ -4,6 +4,7 @@ import com.example.springwebfluxsample.application.service.ExternalApiRequestSer
 import com.example.springwebfluxsample.application.service.GeneratorService;
 import com.example.springwebfluxsample.application.service.TodoService;
 import com.example.springwebfluxsample.infrastructure.dto.response.HttpbinGetResponse;
+import com.example.springwebfluxsample.infrastructure.repository.FirebaseRepository;
 import com.example.springwebfluxsample.presentation.dto.response.ErrorResponse;
 import com.example.springwebfluxsample.presentation.dto.response.SimpleResponse;
 import com.example.springwebfluxsample.presentation.dto.response.Todo;
@@ -31,6 +32,7 @@ public class SampleController {
   private final TodoService todoService;
   private final ExternalApiRequestService externalApiRequestService;
   private final GeneratorService generatorService;
+  private final FirebaseRepository firebaseRepository;
 
   /**
    * jsonplaceholderから返却されるtodoオブジェクトを返却する
@@ -78,6 +80,20 @@ public class SampleController {
         .subscribe(name -> log.info("Mono Name is: {}", name));
     final var response = new SimpleResponse("value");
     return Mono.just(response);
+  }
+
+  /**
+   * Firebaseからユーザー情報を取得する
+   * @param idToken IDトークン
+   * @return ユーザー情報
+   */
+  @GetMapping(value = "/firebase")
+  @Operation(summary = "Firebaseへサンプルリクエストを送信する", description = "Firebaseに接続し、任意のリクエストを送信する", tags = "外部API接続")
+  @ApiResponse(responseCode = "200", description = "firebaseから返却されるレスポンス",
+      content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = String.class)))
+  public Mono<String> getFirebase(final String idToken) {
+    log.info("Firebase request.");
+    return firebaseRepository.getUser(idToken);
   }
 
   /**
