@@ -27,7 +27,7 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/v1")
 @RequiredArgsConstructor
-public class SampleController {
+public class SampleV1Controller {
   private final TodoService todoService;
   private final ExternalApiRequestService externalApiRequestService;
   private final GeneratorService generatorService;
