@@ -61,6 +61,6 @@ test {
 apply plugin: 'checkstyle'
 
 checkstyle {
-    toolVersion '10.9.3'
-    configFile file('./config/google_checks.xml')
+    toolVersion = '10.9.3'
+    configFile = file('./config/google_checks.xml')
 }
