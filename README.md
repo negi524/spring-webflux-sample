@@ -15,10 +15,6 @@
 ```
 
 もしくは、環境変数に以下を設定
-```fish
-set -x SPRING_PROFILES_ACTIVE local
-```
-or
 ```bash
 export SPRING_PROFILES_ACTIVE=local
 ```
