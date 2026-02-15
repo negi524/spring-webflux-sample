@@ -32,7 +32,7 @@ dependencies {
 
     // swagger
     // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webflux-ui
-    implementation 'org.springdoc:springdoc-openapi-starter-webflux-ui:2.3.0'
+    implementation 'org.springdoc:springdoc-openapi-starter-webflux-ui:3.0.1'
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
@@ -40,10 +40,10 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
     // https://mvnrepository.com/artifact/net.logstash.logback/logstash-logback-encoder
-    implementation 'net.logstash.logback:logstash-logback-encoder:7.4'
+    implementation 'net.logstash.logback:logstash-logback-encoder:9.0'
 
     // https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-prometheus
-    implementation 'io.micrometer:micrometer-registry-prometheus:1.12.3'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
 
     // ログのトレーシング
     implementation 'io.micrometer:micrometer-tracing'
