@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-SpringWebfluxSampleApplication<spring-webflux-sample>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.example.springwebfluxsample.SpringWebfluxSampleApplication",
+      "projectName": "spring-webflux-sample",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
